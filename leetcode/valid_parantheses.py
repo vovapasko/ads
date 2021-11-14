@@ -17,11 +17,20 @@ class MyStack:
         except IndexError:
             return None
 
+    def is_empty(self):
+        return len(self.container) == 0
 
-# ms = MyStack()
-# # ms.push(1)
-# # ms.push(2)
-# # ms.push(3)
-# print(ms.read())
-# ms.pop()
-# print(ms.read())
+
+def isValid(s: str):
+    rules = {"(": ")", "{": "}", "[": "]"}
+    stack = MyStack()
+    for ch in s:
+        if ch in rules.keys():
+            stack.push(ch)
+        else:
+            el = stack.pop()
+            if el is None:
+                return False
+            if rules.get(el) != ch:
+                return False
+    return stack.is_empty()
