@@ -1,4 +1,4 @@
-from typing import Union
+from typing import NoReturn, Union
 
 class MyNode:
     def __init__(self, value) -> None:
@@ -41,7 +41,15 @@ class MyLinkedList:
             removed_el = current.next
             current.next = tmp
             return removed_el
-            
+
+    def print(self) -> None:
+        current = self.first
+        while current.next is not None:
+            print(str(current.value) + " -> ",end=" ")
+            nxt = current.next
+            current = nxt
+        print(str(current.value))
+
     def __iterate_until(self, index) -> MyNode:
         assert index >= 0
         i = 0
@@ -60,4 +68,21 @@ class MyLinkedList:
             current = next_el
         return current
 
-        
+n0 = MyNode(0)
+n1 = MyNode(1)
+n2 = MyNode(2)
+n3 = MyNode(3)
+
+ll = MyLinkedList(n0)
+ll.insert(n1)
+ll.insert(n2)
+ll.insert(n3)
+ll.print()
+
+ll.delete(1)
+ll.print()
+ll.insert(MyNode(10), 1)
+ll.print()
+ll.delete(3) # IndexError here, what should not be
+ll.print()
+
