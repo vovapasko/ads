@@ -1,10 +1,6 @@
 from typing import Union
 from my_stack import MyStack
-
-class MyNode:
-    def __init__(self, value) -> None:
-        self.value = value
-        self.next: MyNode = None
+from my_node import MyNode
     
 
 class MyLinkedList:
