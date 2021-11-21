@@ -1,4 +1,5 @@
-from typing import NoReturn, Union
+from typing import Union
+from my_stack import MyStack
 
 class MyNode:
     def __init__(self, value) -> None:
@@ -69,22 +70,49 @@ class MyLinkedList:
             current = next_el
         return current
 
-n0 = MyNode(0)
-n1 = MyNode(1)
-n2 = MyNode(2)
-n3 = MyNode(3)
+    def reverse(self) -> object:
+        stack = MyStack()
+        reversed_list = MyLinkedList()
+        current = self.first
+        while current is not None:
+            stack.push(MyNode(current.value))
+            next_el = current.next
+            current = next_el
+        reversed_list.first = stack.pop()
+        while not stack.is_empty():
+            next_el = stack.pop()
+            reversed_list.insert(next_el)
+        return reversed_list
+        
+    
+def test_list():
+    n0 = MyNode(0)
+    n1 = MyNode(1)
+    n2 = MyNode(2)
+    n3 = MyNode(3)
 
-ll = MyLinkedList(n0)
-ll.insert(n1)
-ll.insert(n2)
-ll.insert(n3)
-ll.print()
+    ll = MyLinkedList(n0)
+    ll.insert(n1)
+    ll.insert(n2)
+    ll.insert(n3)
+    ll.print()
 
-ll.delete(1)
-ll.print()
-ll.insert(MyNode(10), 1)
-ll.print()
-ll.delete(3) 
-ll.print()
-ll.insert(MyNode(-1), 0)
-ll.print()
+    ll.delete(1)
+    ll.print()
+    ll.insert(MyNode(10), 1)
+    ll.print()
+    ll.delete(3) 
+    ll.print()
+    ll.insert(MyNode(-1), 0)
+    ll.print()
+    return ll
+
+def test_reverse():
+    l1 = test_list()
+    print("Test reversing tree")
+    reversed: MyLinkedList = l1.reverse()
+    l1.print()
+    reversed.print()
+
+if __name__ == "__main__":
+    test_reverse()

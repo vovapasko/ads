@@ -17,6 +17,9 @@ class MyStack:
         except IndexError:
             return None
 
+    def is_empty(self):
+        return len(self.container) == 0
+
 
 # ms = MyStack()
 # # ms.push(1)
