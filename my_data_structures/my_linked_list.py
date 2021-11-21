@@ -59,6 +59,7 @@ class MyLinkedList:
             if next_el is None:
                 raise IndexError()
             current = next_el
+            i += 1
         return current
 
     def __get_last(self) -> MyNode:
@@ -83,6 +84,7 @@ ll.delete(1)
 ll.print()
 ll.insert(MyNode(10), 1)
 ll.print()
-ll.delete(3) # IndexError here, what should not be
+ll.delete(3) 
 ll.print()
-
+ll.insert(MyNode(-1), 0)
+ll.print()
