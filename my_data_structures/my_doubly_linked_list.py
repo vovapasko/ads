@@ -21,7 +21,7 @@ class MyDoublyLinkedList:
         prev = el_to_delete.previous
         nxt = el_to_delete.next
         prev.next = nxt
-        nxt.prerious = prev
+        nxt.previous = prev
 
     def __iterate_until(self, index):
         i = 0
@@ -42,6 +42,14 @@ class MyDoublyLinkedList:
             current = nxt
         print(str(current.value))
 
+    def print_reversed(self):
+        current = self.last
+        while current.previous is not None:
+            print(str(current.value) + " <- ",end=" ")
+            prev = current.previous
+            current = prev
+        print(str(current.value))
+    
 n0 = MyDoublyNode(0)
 n1 = MyDoublyNode(1)
 n2 = MyDoublyNode(2)
@@ -54,5 +62,7 @@ dl.insert(n2)
 dl.insert(n3)
 dl.insert(n4)
 dl.print()
+dl.print_reversed()
 dl.delete(3)
 dl.print()
+dl.print_reversed()
