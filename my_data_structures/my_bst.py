@@ -6,15 +6,15 @@ class MyBinarySearchTree:
     def __init__(self) -> None:
         pass
 
-    def search(self, node: MyTreeNode, value: object) -> Union[MyTreeNode, None]:
-        if node.left is None and node.right is None and node.value != value:
+    def search(self, node: MyTreeNode, node_to_find: MyTreeNode) -> Union[MyTreeNode, None]:
+        if node.left is None and node.right is None and node.value != node_to_find.value:
             return None
-        if node.value == value:
+        if node.value == node_to_find.value:
             return node
-        elif value > node.value:
-            return self.search(node.right, value)
-        elif value < node.value:
-            return self.search(node.left, value)
+        elif node_to_find.value > node.value:
+            return self.search(node.right, node_to_find)
+        elif node_to_find.value < node.value:
+            return self.search(node.left, node_to_find)
 
     def insert(self, tree_node: MyTreeNode, node: MyTreeNode) -> None:
         if tree_node.value < node.value:
@@ -29,6 +29,13 @@ class MyBinarySearchTree:
                 self.insert(tree_node.left, node)
 
     def delete(self, tree_node: MyTreeNode, node: MyTreeNode) -> Union[MyTreeNode, None]:
+        node_to_delete = self.search(tree_node, node)
+        if node_to_delete is None:
+            return None
+        if node_to_delete.left is None and node_to_delete.right is None:
+            node_to_delete = None
+
+    def find_successor(self, tree_root: MyTreeNode, for_node: MyTreeNode) -> MyTreeNode:
         pass
 
     def traverse_in_order(self, tree_node: MyTreeNode) -> None:
@@ -84,10 +91,11 @@ tree.insert(root, n8)
 tree.insert(root, n9)
 tree.insert(root, n10)
 tree.insert(root, n11)
+n12 = MyTreeNode(123)
 print("In order")
-print(tree.traverse_in_order(root))
-print("Pre order")
-print(tree.traverse_preorder(root))
-print("Post order")
-print(tree.traverse_postorder(root))
+tree.traverse_in_order(root)
 print("Biggest number = ", tree.get_biggest_number(root))
+tree.insert(root, n12)
+print("Biggest number = ", tree.get_biggest_number(root))
+tree.delete(root, n12)
+tree.traverse_in_order(root)
