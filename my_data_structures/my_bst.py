@@ -12,21 +12,21 @@ class MyBinarySearchTree:
         if node.value == value:
             return node
         elif value > node.value:
-            self.search(node.right)
+            return self.search(node.right, value)
         elif value < node.value:
-            self.search(node.left)
+            return self.search(node.left, value)
 
     def insert(self, tree_node: MyTreeNode, node: MyTreeNode) -> None:
         if tree_node.value < node.value:
             if tree_node.right is None:
                 tree_node.right = node
             else:
-                self.insert(tree_node.right, node)
+                return self.insert(tree_node.right, node)
         elif tree_node.value > node.value:
             if tree_node.left is None:
                 tree_node.left = node
             else:
-                self.insert(tree_node.left, node)
+                return self.insert(tree_node.left, node)
 
     def delete(self, value) -> Union[MyTreeNode, None]:
         pass
@@ -45,3 +45,4 @@ tree.insert(root, n1)
 tree.insert(root, n2)
 tree.insert(root, n3)
 tree.insert(root, n4)
+print(tree.search(root, n4.value).value)
