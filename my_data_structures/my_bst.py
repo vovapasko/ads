@@ -53,6 +53,11 @@ class MyBinarySearchTree:
         self.traverse_in_order(tree_node.right)
         print(tree_node.value)
 
+    def get_biggest_number(self, tree_node: MyTreeNode):
+        if tree_node.right is None:
+            return tree_node.value
+        return self.get_biggest_number(tree_node.right)
+
 
 root = MyTreeNode(55)
 n1 = MyTreeNode(25)
@@ -85,3 +90,4 @@ print("Pre order")
 print(tree.traverse_preorder(root))
 print("Post order")
 print(tree.traverse_postorder(root))
+print("Biggest number = ", tree.get_biggest_number(root))
