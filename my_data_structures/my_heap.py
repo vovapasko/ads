@@ -3,7 +3,8 @@ class MyHeap:
         self.heap = []
 
     def remove(self) -> object:
-        return self.heap.pop(0)
+        self.heap[0] = self.last()
+        node_index = 0
 
     def insert(self, value: object):
         self.heap.append(value)
@@ -16,7 +17,7 @@ class MyHeap:
                 parent_index = self.get_parent(node_index)
 
     def last(self):
-        return self.heap[-1]
+        return self.heap.pop()
 
     def get_parent(self, node: int):
         return int((node - 1) / 2)
@@ -26,6 +27,14 @@ class MyHeap:
 
     def get_right_child(self, node: int):
         return (node * 2) + 2
+
+    def get_greater_child_index(self, node_index: int):
+        left_index = self.get_left_child(node_index)
+        right_index = self.get_right_child(node_index)
+        if left_index < len(self.heap) and right_index < len(self.heap):
+            if self.heap[left_index] < self.heap[right_index]:
+                return right_index
+            return left_index
 
 
 heap = MyHeap()
