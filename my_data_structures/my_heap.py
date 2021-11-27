@@ -3,8 +3,18 @@ class MyHeap:
         self.heap = []
 
     def remove(self) -> object:
-        self.heap[0] = self.last()
-        node_index = 0
+        if len(self.heap) == 1:
+            return self.heap.pop()
+        else:
+            to_remove = self.heap[0]
+            self.heap[0] = self.last()
+            node_index = 0
+            child_index = self.get_greater_child_index(node_index)
+            while child_index is not None:
+                self.heap[node_index], self.heap[child_index] = self.heap[child_index], self.heap[node_index]
+                node_index = child_index
+                child_index = self.get_greater_child_index(node_index)
+            return to_remove
 
     def insert(self, value: object):
         self.heap.append(value)
@@ -34,20 +44,30 @@ class MyHeap:
         if left_index < len(self.heap) and right_index < len(self.heap):
             if self.heap[left_index] < self.heap[right_index]:
                 return right_index
-            return left_index
+            if self.heap[left_index] > self.heap[right_index]:
+                return left_index
+            else:
+                return None
 
 
-heap = MyHeap()
-heap.insert(100)
-heap.insert(88)
-heap.insert(25)
-heap.insert(87)
-heap.insert(16)
-heap.insert(8)
-heap.insert(12)
-heap.insert(86)
-heap.insert(50)
-heap.insert(2)
-heap.insert(15)
-heap.insert(3)
-heap.insert(40)
+def init_heap():
+    heap = MyHeap()
+    heap.insert(100)
+    heap.insert(88)
+    heap.insert(25)
+    heap.insert(87)
+    heap.insert(16)
+    heap.insert(8)
+    heap.insert(12)
+    heap.insert(86)
+    heap.insert(50)
+    heap.insert(2)
+    heap.insert(15)
+    heap.insert(3)
+    return heap
+
+
+heap = init_heap()
+# heap.insert(40)
+heap.remove()
+heap.remove()
