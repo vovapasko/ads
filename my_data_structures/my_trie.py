@@ -24,8 +24,21 @@ class MyTrie:
             current_node = current_node.children[char]
         current_node.children["*"] = None
 
+    def traverse(self):
+        self.__traverse(self.root)
+
+    def __traverse(self, node):
+        if node is None:
+            return
+        for key, value in node.children.items():
+            print(key + " -> ", end=" ")
+            self.__traverse(value)
+
 
 trie = MyTrie()
 trie.insert("cat")
 trie.insert("catniss")
-n = trie.search("cat")
+trie.insert("car")
+trie.insert("toy")
+trie.insert("toefl")
+trie.traverse()
