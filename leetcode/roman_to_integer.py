@@ -8,13 +8,22 @@ def romanToInt(s: str):
         "D": 500,
         "M": 1000
     }
+    stack = [map.get(s[0])]
     if len(s) == 1:
-        return map[s]
-    res = 0
+        return stack.pop()
     for i in range(1, len(s)):
-        curr = map[s[i]]
-        prev = map[s[i - 1]]
-        if curr > prev:
-            res += (curr - prev)
+        num = map.get(s[i])
+        last_el = stack[-1]
+        if num > last_el:
+            stack[-1] = num - last_el
         else:
-            res += curr
+            stack.append(num)
+    return sum(stack)
+
+
+print(romanToInt("V"))
+print(romanToInt("III"))
+print(romanToInt("VI"))
+print(romanToInt("XXVI"))
+print(romanToInt("IV"))
+print(romanToInt("XIV"))
