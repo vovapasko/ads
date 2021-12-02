@@ -5,7 +5,7 @@ class MyUndirectedVertex(MyVertex):
     def __init__(self, value: str) -> None:
         super().__init__(value)
 
-    def insert(self, vertex: MyVertex):
+    def connect(self, vertex: MyVertex):
         if self in vertex.adjacent_verticies:
             return
         self.adjacent_verticies.append(vertex)
