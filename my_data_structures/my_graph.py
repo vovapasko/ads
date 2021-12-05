@@ -33,8 +33,12 @@ class MyUndirectedGraph(MyGraph):
                 print(adj.value + " -> ", end=" ")
             print()
 
-    def dfs(self, start_vertex: MyVertex):
-        pass
+    def dfs(self, start_vertex: MyVertex, visited={}):
+        print(start_vertex.value)
+        visited[start_vertex.value] = True
+        for node in start_vertex.adjacent_verticies:
+            if not visited.get(node.value, False):
+                self.dfs(node, visited)
 
 
 n0 = MyVertex("0")
@@ -58,5 +62,4 @@ graph.make_connection(n5, n6)
 graph.make_connection(n2, n6)
 graph.make_connection(n3, n7)
 graph.make_connection(n7, n8)
-
-graph.display()
+graph.dfs(n0)
