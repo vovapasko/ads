@@ -40,6 +40,20 @@ class MyUndirectedGraph(MyGraph):
             if not visited.get(node.value, False):
                 self.dfs(node, visited)
 
+    def bfs(self, start_vertex: MyVertex):
+        print("BFS")
+        queue = []
+        visited = {}
+        visited[start_vertex.value] = True
+        queue.append(start_vertex)
+        while len(queue) != 0:
+            current_node: MyVertex = queue.pop(0)
+            for node in current_node.adjacent_verticies:
+                if not visited.get(node.value, False):
+                    print(node)
+                    visited[node.value] = True
+                    queue.append(node)
+
 
 n0 = MyVertex("0")
 n1 = MyVertex("1")
@@ -63,3 +77,4 @@ graph.make_connection(n2, n6)
 graph.make_connection(n3, n7)
 graph.make_connection(n7, n8)
 graph.dfs(n0)
+graph.bfs(n0)
