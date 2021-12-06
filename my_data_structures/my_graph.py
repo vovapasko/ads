@@ -53,6 +53,21 @@ class MyUndirectedGraph(MyGraph):
                     print(node)
                     visited[node.value] = True
                     queue.append(node)
+        print("End of BFS")
+
+    def bfs_search(self, start_vertex: MyVertex, node_to_find: MyVertex):
+        queue = []
+        visited = {}
+        visited[start_vertex.value] = True
+        queue.append(start_vertex)
+        while len(queue) != 0:
+            current_node: MyVertex = queue.pop(0)
+            if current_node.value == node_to_find.value:
+                return node_to_find.value
+            for node in current_node.adjacent_verticies:
+                if not visited.get(node.value, False):
+                    visited[node.value] = True
+                    queue.append(node)
 
 
 n0 = MyVertex("0")
@@ -78,3 +93,4 @@ graph.make_connection(n3, n7)
 graph.make_connection(n7, n8)
 graph.dfs(n0)
 graph.bfs(n0)
+print(graph.bfs_search(n0, n8))
