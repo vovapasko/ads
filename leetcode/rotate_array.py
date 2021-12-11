@@ -1,11 +1,15 @@
-# almost works
-def rotate(nums: list, k: int):
-    rotated_list = [0] * len(nums)
-    for i in range(len(nums)):
-        new_index = i + k
-        if new_index < len(nums):
-            rotated_list[new_index] = nums[i]
-        else:
-            rotated_list[new_index - len(nums)] = nums[i]
-    for i in range(len(nums)):
-        nums[i] = rotated_list[i]
+from typing import List
+# solved! Use Modulo ariphmetic
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n_map = {}
+        for i in range(len(nums)):
+            new_index = (i + k) % len(nums)
+            n_map[new_index] = nums[i]
+        for key, value in n_map.items():
+            nums[key] = value
