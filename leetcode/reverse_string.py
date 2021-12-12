@@ -1,3 +1,6 @@
+from typing import List
+
+
 class MyStack:
     def __init__(self) -> None:
         self.container = []
@@ -29,6 +32,23 @@ def reverseString(s: list):
     while not stack.is_empty():
         s.append(stack.pop())
     return s
+
+
+class Solution:
+    # using O(1) space
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        l = 0
+        r = len(s) - 1
+        while l <= r:
+            tmp_l = s[l]
+            tmp_r = s[r]
+            s[l] = tmp_r
+            s[r] = tmp_l
+            l += 1
+            r -= 1
 
 
 s = ["h", "e", "l", "l", "o"]
