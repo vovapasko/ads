@@ -3,18 +3,18 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        symbols = {}
-        counters = []
-        counter = 0
-        for el in s:
-            if symbols.get(el, None) is None:
-                symbols[el] = True
-                counter += 1
+        max_sizes = [0]  # by default longest string so far is 0
+        letter_map = {}
+        l = 0
+        for r in range(len(s)):
+            if letter_map.get(s[r], None) is None:
+                letter_map[s[r]] = r
             else:
-                counters.append(counter)
-                counter = 1
-        counters.append(counter)
-        return max(counters)
+                max_sizes.append(r - l)
+                l = r
+                letter_map = {s[l]: l}
+        max_sizes.append(len(letter_map))
+        return max(max_sizes)
 
 
 s = Solution()
