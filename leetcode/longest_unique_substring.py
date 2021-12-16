@@ -3,19 +3,21 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        max_sizes = [0]  # by default longest string so far is 0
+        r = l = 0
+        max_l = 0
         letter_map = {}
-        l = 0
-        for r in range(len(s)):
+        while r < len(s):
             if letter_map.get(s[r], None) is None:
                 letter_map[s[r]] = r
+                r += 1
+                max_l = max(max_l, r-l)
             else:
-                max_sizes.append(r - l)
-                l = r
-                letter_map = {s[l]: l}
-        max_sizes.append(len(letter_map))
-        return max(max_sizes)
+                del letter_map[s[l]]
+                l += 1
+        return max_l
 
 
 s = Solution()
-s.lengthOfLongestSubstring(" ")
+print(s.lengthOfLongestSubstring(" "))
+print(s.lengthOfLongestSubstring("pwwkew"))
+print(s.lengthOfLongestSubstring("abca"))
