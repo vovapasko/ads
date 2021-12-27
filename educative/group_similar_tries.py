@@ -32,6 +32,14 @@ def group_titles(strs: List[str]) -> Dict:
     return words_map
 
 
+def search(query: str, repo: dict):
+    query_key = generate_key(query)
+    if query_key in repo:
+        for word in repo[query_key]:
+            print(word)
+
+
 titles = ["duel", "dule", "speed", "spede", "deul", "cars"]
 gt = group_titles(titles)
-print(gt)
+query = "spede"
+search(query, gt)
