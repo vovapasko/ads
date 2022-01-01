@@ -41,7 +41,7 @@ class MyLRUCache:
                 new_element.previous = tmp
                 self.tail = new_element
         else:
-            old_head = self.elements_map.pop(self.head.key)
+            old_head = self.elements_map.get(self.head.key)
             tmp_head = old_head.next
             self.head = tmp_head
             tmp_tail = self.tail
