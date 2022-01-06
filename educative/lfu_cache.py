@@ -43,6 +43,10 @@ class LFU_cache:
         self.cache_vals = LinkedList()
 
     def Set(self, key, value):
+        # if there is no key -> set key: value, set frequency to 1
+        # if amount of keys is less than capacity -> add key: value, set frequency to 1
+        # if amount equals capacity -> remove less frequent element, set key:value and set
+        # frequency to 1
 
         return
 
