@@ -13,6 +13,7 @@ async def power_two(x):
     # yield from add_me(result)
     return result
 
+
 async def equation(n):
     i = 1
     while i < n:
