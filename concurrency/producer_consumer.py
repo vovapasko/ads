@@ -18,6 +18,6 @@ async def consume(resource: Future):
 
 async def main():
     future = Future()
-    res = await asyncio.gather(consume(future), produce(future))
+    res = await asyncio.gather(produce(future), consume(future))
 
 asyncio.run(main())
