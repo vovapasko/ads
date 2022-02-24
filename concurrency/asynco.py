@@ -3,7 +3,7 @@ import asyncio
 
 async def countdown(start: int):
     while start > 0:
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(2)
         print("Down", start)
         start -= 1
 
@@ -11,7 +11,7 @@ async def countdown(start: int):
 async def countup(stop: int):
     i = 0
     while i < stop:
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.1)
         print("Up", i)
         i += 1
 

@@ -28,7 +28,7 @@ def countdown(start: int):
 
 def countup(stop: int, i=0):
     if i < stop:
-        time.sleep(0.5)
+        time.sleep(1)
         print("Up", i)
         scheduler.add_task(lambda: countup(stop, i + 1))
 
