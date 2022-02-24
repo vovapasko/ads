@@ -6,18 +6,20 @@
 
 def validate_stack_sequences(pushed: list, popped: list):
     # write your code here
-    push_iter, popp_iter = 1, 0
-    stack = [pushed[0]]
-    try:
-        while True:
-            if stack[-1] == popped[popp_iter]:
-                popp_iter += 1
-                stack.pop()
-            else:
-                stack.append(pushed[push_iter])
-                push_iter += 1
-    except IndexError:
-        return len(stack) == 0
+
+    if len(pushed) != len(popped):
+        return False
+    i = 0
+    stack = []
+    for pid in pushed:
+        stack.append(pid)
+        while stack and stack[-1] == popped[i]:
+            stack.pop()
+            i += 1
+
+    if not stack:
+        return True
+    return False
 
 
 validate_stack_sequences([1, 2, 3, 4, 5], [4, 5, 3, 2, 1])
