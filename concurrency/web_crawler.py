@@ -30,19 +30,18 @@ def run_sync():
 
 
 def async_one():
-    async def get_data(url):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as response:
-                text = await response.text()
-                return text
+    async def get_data(url, session):
+        async with session.get(url) as response:
+            text = await response.text()
+            return text
 
     async def run_async():
         urls_to_crawl = get_urls_to_crawl()
         start = time.time()
-
-        for url in urls_to_crawl:
-            text = await get_data(url)
-            print(url)
+        async with aiohttp.ClientSession() as session:
+            for url in urls_to_crawl:
+                text = await get_data(url, session)
+                print(url)
         elapsed = time.time() - start
         print("\n{} URLS downloaded in {:.2f}s".format(len(urls_to_crawl), elapsed))
 
